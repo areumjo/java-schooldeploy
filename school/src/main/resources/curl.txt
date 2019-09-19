@@ -1,0 +1,16 @@
+curl
+
+** get a token **
+
+curl -X POST --user "lambda-client:lambda-secret" -d "grant_type=password&username=admin&password=password" http://localhost:2019//login
+
+: {"access_token":"d3192942-8ba5-4478-95d3-19b7d6893d70","token_type":"bearer","expires_in":3599,"scope":"read write trust"}
+
+
+** GET and sending header **
+
+curl -X GET -H "Accept: application/json" -H "Authorization: Bearer d3192942-8ba5-4478-95d3-19b7d6893d70" http://localhost:2019/users/users
+[{"userid":23,"username":"admin","userroles":[{"role":{"roleid":20,"name":"admin"}},{"role":{"roleid":21,"name":"user"}},{"role":{"roleid":22,"name":"data"}}],"authority":[{"authority":"ROLE_ADMIN"},{"authority":"ROLE_USER"},{"authority":"ROLE_DATA"}]},{"userid":24,"username":"cinnamon","userroles":[{"role":{"roleid":21,"name":"user"}},{"role":{"roleid":22,"name":"data"}}],"authority":[{"authority":"ROLE_USER"},{"authority":"ROLE_DATA"}]},{"userid":25,"username":"barnbarn","userroles":[{"role":{"roleid":21,"name":"user"}}],"authority":[{"authority":"ROLE_USER"}]},{"userid":26,"username":"Bob","userroles":[{"role":{"roleid":21,"name":"user"}}],"authority":[{"authority":"ROLE_USER"}]},{"userid":27,"username":"Jane","userroles":[{"role":{"roleid":21,"name":"user"}}],"authority":[{"authority":"ROLE_USER"}]}]
+
+
+** After successfully deploy your app on heroku, replace localhost to your-app address
